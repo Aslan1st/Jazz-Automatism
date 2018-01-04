@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require_relative '../lib/jazz_automatism.rb'
+
+BroadcastSession.new.get_up_and_go
