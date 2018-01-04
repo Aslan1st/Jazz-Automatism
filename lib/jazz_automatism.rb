@@ -94,49 +94,11 @@ class BroadcastSession
   end
 
   def calculate_switch
-    calculate_now = DateTime.now.strftime('%Y-%m-%dT%H:%M:')
-    calculate_now_seconds = DateTime.now.strftime('%S').to_i + 20
-    @calculate_when_to_change = calculate_now.to_s + calculate_now_seconds.to_s
-    if calculate_now_seconds >= 60
-      handle_time(calculate_now_seconds)
-    end
-    @when_to_change = DateTime.xmlschema(@calculate_when_to_change + '-05:00')
+    @when_to_change = Time.now + 20
   end
 
   def good_to_change
-    return @when_to_change >= DateTime.now
-  end
-
-  def handle_time(seconds)
-    adj_seconds = seconds%60
-    adj_seconds_string = adj_seconds.to_s
-    if adj_seconds < 10
-      adj_seconds_string = '0' + adj_seconds_string
-    end
-    calculate_now = DateTime.now.strftime('%Y-%m-%dT%H:')
-    calculate_minute = DateTime.now.strftime('%M')
-    minute_i = calculate_minute.to_i + 1
-    minute_s = minute_i.to_s
-    if minute_i < 10
-      minute_s = '0' + minute_s
-    end
-    if minute_i >= 60
-      adj_minute = minute_i%60
-      adj_minute_string = adj_minute.to_s
-      if adj_minute < 10
-        minute_s = '0' + adj_minute_string
-      end
-      calculate_now = DateTime.now.strftime('%Y-%m-%dT')
-      calculate_hour = DateTime.now.strftime('%H')
-      hour_i = calculate_hour.to_i + 1
-      hour_s = hour_i.to_s
-      if hour_i < 10
-        hour_s = '0' + hour_s
-      end
-      calculate_now = calculate_now.to_s + hour_s + ':'
-    end
-    calculate_new_minute = calculate_now.to_s + minute_s
-    @calculate_when_to_change = calculate_new_minute + ':' + adj_seconds_string
+    return @when_to_change <= Time.now
   end
 
   def get_up_and_go
@@ -148,7 +110,7 @@ class BroadcastSession
       while DateTime.now <= @four_am_tomorrow do
         calculate_switch
         rotate_shots(which_shot)
-        while good_to_change
+        until good_to_change
           sleep(1)
         end
       end
