@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="intro_CSharp.html" name="intro_CSharp.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Notes: C#</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Wirecast Scripting &#8212; 
+			Notes: C#</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="intro_welcome.html">
+				  Welcome</a></li>
+<li><a href="intro_visual_basic.html">
+				  Notes: Visual Basic</a></li>
+<li><a href="intro_CSharp.html">
+				  Notes: C#</a></li>
+<li><a href="intro_perl.html">
+				  Notes: Perl</a></li>
+<li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Installation<p id="para_indent">
+				<p id="para_indent">
+					Wirecast currently supports only Late Binding of OLE objects.
+				</p>
+				<p id="para_indent">
+					This is to maintain compatibility with an API that is still evolving.
+				</p>
+			</p></p>
+<p id="para_subs">Getting the Wirecast Object<p id="para_indent">
+				<p id="para_indent">
+					All interaction with Wirecast begins with asking for the main Wirecast objects, which can be done as follows:
+				</p>
+				<pre id="code">
+object oWirecast = Marshal.GetActiveObject("Wirecast.Application");</pre>
+				<p id="para_indent">
+					The above code assumes that Wirecast is currently running.
+				</p>
+				<p id="para_indent">
+					If Wirecast is not running, you will receive an exception from the Automation layer.
+				</p>
+				<p id="para_indent">
+					You can create a new instance of Wirecast as follows:
+				</p>
+				<pre id="code">
+Type objClassType = Type.GetTypeFromProgID("Wirecast.Application");
+object oWirecast = Activator.CreateInstance(objClassType);</pre>
+				<p id="note"><b>NOTE: </b>
+					Wirecast ensures only one instance is running on each machine.
+					This is due to the fact that Wirecast needs exclusive access to your devices (Cameras, etc).
+				</p>
+			</p></p>
+<p id="para_subs">Methods<p id="para_indent">
+				<p id="para_indent">
+					The syntax for calling Late Bound methods in C# is shown below.
+					In this example, we are calling the method "DocumentByIndex" with a parameter of one (1).
+				</p>
+				<pre id="code">
+object oWirecast = Marshal.GetActiveObject("Wirecast.Application");
+object[] oParam=new object[1];
+oParam[0]=1;
+object oDocument = oWirecast.GetType().InvokeMember("DocumentByIndex",
+	BindingFlags.InvokeMethod, null, oWirecast, oParam );</pre>
+				<p id="para_indent">
+					However, in our example code for C#, we have provided a simple static class "Late" to help remove much of the glue.
+				</p>
+				<p id="para_indent">
+					With this class, invoking DocumentByIndex looks like this:
+				</p>
+				<pre id="code">
+object oWirecast = Marshal.GetActiveObject("Wirecast.Application");
+object oDocument = Late.Invoke(oWirecast, "DocumentByIndex", 1);</pre>
+			</p></p>
+<p id="para_subs">Properties<p id="para_indent">
+			
+				<p id="para_indent">
+					You can set/get properties also using the Late class provided in the example:
+				</p>
+				<p id="para_indent">
+					Here is an example of setting the TransitionSpeed property:
+				</p>
+				<pre id="code">
+object oWirecast = Marshal.GetActiveObject("Wirecast.Application");
+object oDocument = Late.Invoke(oWirecast, "DocumentByIndex", 1);
+string speed = (string) Late.Get(oDocument, "TransitionSpeed");
+MessageBox.Show("TransitionSpeed: " + speed);</pre>
+				<p id="para_indent">
+					You may set a property in a similar fashion:
+				</p>
+				<pre id="code">
+object oWirecast = Marshal.GetActiveObject("Wirecast.Application");
+object oDocument = Late.Invoke(oWirecast, "DocumentByIndex", 1);
+Late.Set(oDocument, "TransitionSpeed", "slow");</pre>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

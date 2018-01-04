@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="iDocLayer_ShotIDByName.html" name="iDocLayer_ShotIDByName.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>ShotIDByName</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Document Layer Interface &#8212; 
+			ShotIDByName</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iDocLayer_overview.html">
+				  Overview</a></li>
+<li><a href="iDocLayer_ShotCount.html">
+				  ShotCount</a></li>
+<li><a href="iDocLayer_ShotIDByIndex.html">
+				  ShotIDByIndex</a></li>
+<li><a href="iDocLayer_ShotIDByName.html">
+				  ShotIDByName</a></li>
+<li><a href="iDocLayer_PreviewShotID.html">
+				  PreviewShotID</a></li>
+<li><a href="iDocLayer_LiveShotID.html">
+				  LiveShotID</a></li>
+<li><a href="iDocLayer_AddShotWithMedia.html">
+				  AddShotWithMedia</a></li>
+<li><a href="iDocLayer_RemoveShotByID.html">
+				  RemoveShotByID</a></li>
+<li><a href="iDocLayer_Go.html">
+				  Go</a></li>
+<li><a href="iDocLayer_Visible.html">
+				  Visible</a></li>
+<li><a href="iDocLayer_ActiveShotID.html">
+				  ActiveShotID</a></li>
+<li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Method ShotIDByName Interface<p id="para_indent">
+				<p id="para_indent">
+					Visual Basic:
+				</p>
+				<pre id="code">
+ShotIDByName(name as String, compare_method as Int) As Int</pre>
+				<p id="para_indent">
+					C Variants:
+				</p>
+				<pre id="code">
+int ShotIDByName(const char *name, int compare_method);</pre>
+			</p></p>
+<p id="para_subs">name<p id="para_indent">
+				<p id="para_indent">
+					The string to use to compare against each shot name.
+				</p>
+			</p></p>
+<p id="para_subs">compare_method<p id="para_indent">
+				<p id="para_indent">
+					The comparison method, which is one of these values:
+					<ul>
+					<li><p id="list_item">0 = Exact Match - The string you pass in exactly matches the shot name</p></li>
+					<li><p id="list_item">1 = Contains - The string you pass in is a substring of the shot name</p></li>
+					<li><p id="list_item">2 = Case Insensitive - The lowercase of the string you pass in exactly matches the lowercase of the shot name</p></li>
+					<li><p id="list_item">3 = Case Insensitive Contains - The lowercase of the string you pass in is a substring of the lowercase of the shot name</p></li>
+					</ul>
+				</p>
+			</p></p>
+<p id="para_subs">Method Result<p id="para_indent">
+				<p id="para_indent">
+					Returns a Wirecast shot_id, which can be used in various methods such as
+					<a href="iDocument_ShotByShotID.html#">ShotByShotID</a><br>
+					Return 0 if no shot matches.<br>
+					If mutiple shots match, a random one is returned.
+				</p>
+			</p></p>
+<p id="para_subs">Discussion<p id="para_indent">
+				<p id="para_indent">
+					Each shot in Wirecast has a unique ID which can be used to identify the shot.<br>
+					A shot_id is unique across the instance of Wirecast; if you quit Wirecast, the shot_id is not longer valid.
+				</p>
+				<p id="para_indent">
+					This searches only on the document layer for a shot which matches the name.
+					To search the whole document, you may use the
+					<a href="iDocument_overview.html#">Document Object</a>
+					<a href="iDocument_ShotIDByName.html#">ShotIDByName</a> method.
+				</p>
+				<p id="para_indent">
+					You can make the current shot live by setting the 
+					<a href="iDocLayer_ActiveShotID.html#">ActiveShotID Property</a>.<br>
+					You can get other properties about a shot by getting the shot object itself through the
+					<a href="iDocument_ShotByShotID.html#">Document's ShotByShotID</a> method.
+				</p>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

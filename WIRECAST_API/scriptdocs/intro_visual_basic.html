@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="intro_visual_basic.html" name="intro_visual_basic.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Notes: Visual Basic</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Wirecast Scripting &#8212; 
+			Notes: Visual Basic</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="intro_welcome.html">
+				  Welcome</a></li>
+<li><a href="intro_visual_basic.html">
+				  Notes: Visual Basic</a></li>
+<li><a href="intro_CSharp.html">
+				  Notes: C#</a></li>
+<li><a href="intro_perl.html">
+				  Notes: Perl</a></li>
+<li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Installation<p id="para_indent">
+				<p id="para_indent">
+					Visual Basic requires no extra items to install.
+				</p>
+			</p></p>
+<p id="para_subs">Objects<p id="para_indent">
+				<p id="para_indent">
+					Objects in Visual Basic are defined of type Object, as in:
+				</p>
+				<pre id="code">
+Dim objWirecast as Object
+				</pre>
+			</p></p>
+<p id="para_subs">Getting the Wirecast Object<p id="para_indent">
+				<p id="para_indent">
+					All interaction with Wirecast begins with asking for the main Wirecast objects, which can be done as follows:
+				</p>
+				<pre id="code">
+Dim objWirecast as Object
+objWirecast = GetObject(Class:="Wirecast.Application")
+				</pre>
+			</p></p>
+<p id="para_subs">Making sure an object is valid<p id="para_indent">
+				<p id="para_indent">
+					Any time you get an object back from Wirecast, you should make sure it is valid, such as...
+				</p>
+				<pre id="code">
+Dim objWirecast as Object
+objWirecast = GetObject(Class:="Wirecast.Application")
+If (Not objWirecast Is Nothing) Then
+  'have a valid Wirecast object
+End If
+				</pre>
+			</p></p>
+<p id="para_subs">Methods<p id="para_indent">
+				<p id="para_indent">
+					The syntax for calling methods in Visual Basic is shown below.
+					In this example, we are calling the method "DocumentByIndex" with a parameter of one (1).
+				</p>
+				<pre id="code">
+Dim objDocument as Object
+objDocument = objWirecast.DocumentByIndex(1)
+If (Not objDocument Is Nothing) Then
+  'have a valid document object
+End If
+				</pre>
+			</p></p>
+<p id="para_subs">Properties<p id="para_indent">
+			
+				<p id="para_indent">
+					You can get the value of properties and modify the properties of some objects.
+				</p>
+				<p id="para_indent">
+					In Visual Basic, you if you'd like to get the "TransitionSpeed" property of the object "objDocument", you might do this:
+				</p>
+				<pre id="code">
+Dim objDocument as Object
+objDocument = objWirecast.DocumentByIndex(1)
+If (Not objDocument Is Nothing) Then
+  Dim speed As String
+  speed = objDocument.TransitionSpeed
+End If
+				</pre>
+				<p id="para_indent">
+					You may set a property in a similar fashion:
+				</p>
+				<pre id="code">
+Dim objDocument as Object
+objDocument = objWirecast.DocumentByIndex(1)
+If (Not objDocument Is Nothing) Then
+  objDocument.TransitionSpeed = "slow"
+End If
+				</pre>
+			</p></p>
+<p id="para_subs">Example: Getting Wirecast Object<p id="para_indent">
+				<p id="para_indent">
+					This example shows how to safely get a various wirecast objects:
+				</p>
+				<pre id="code">
+Private Function GetWirecast() As Object
+    Try
+        Return GetObject(Class:="Wirecast.Application")
+    Catch
+        Return Nothing
+    End Try
+End Function
+
+				</pre>
+			</p></p>
+<p id="para_subs">Example: Getting Document Object<p id="para_indent">
+				<p id="para_indent">
+					This example shows how to safely get a Document object, given the above GetWirecast function:
+				</p>
+				<pre id="code">
+Private Function GetDocument(ByVal doc_idx) As Object
+    Dim objWirecast As Object
+    Dim objDoc As Object
+
+    objWirecast = GetWirecast()
+    If (Not objWirecast Is Nothing) Then
+        objDoc = objWirecast.DocumentByIndex(doc_idx)
+    End If
+
+    Return objDoc
+End Function
+
+				</pre>
+			</p></p>
+<p id="para_subs">Example: Getting Document Layer Object<p id="para_indent">
+				<p id="para_indent">
+					This example shows how to safely get a Document Layer object, given the above GetDocument function:
+				</p>
+				<pre id="code">
+
+Private Function GetLayer(ByVal doc_idx, ByVal layer_name) As Object
+    Dim objDoc As Object
+    Dim objLayer As Object
+
+    objDoc = GetDocument(doc_idx)
+    If (Not objDoc Is Nothing) Then
+        objLayer = objDoc.LayerByName(layer_name)
+    End If
+
+    Return objLayer
+End Function
+				</pre>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

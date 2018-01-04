@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="iDocLayer_overview.html" name="iDocLayer_overview.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Overview</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Document Layer Interface &#8212; 
+			Overview</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iDocLayer_overview.html">
+				  Overview</a></li>
+<li><a href="iDocLayer_ShotCount.html">
+				  ShotCount</a></li>
+<li><a href="iDocLayer_ShotIDByIndex.html">
+				  ShotIDByIndex</a></li>
+<li><a href="iDocLayer_ShotIDByName.html">
+				  ShotIDByName</a></li>
+<li><a href="iDocLayer_PreviewShotID.html">
+				  PreviewShotID</a></li>
+<li><a href="iDocLayer_LiveShotID.html">
+				  LiveShotID</a></li>
+<li><a href="iDocLayer_AddShotWithMedia.html">
+				  AddShotWithMedia</a></li>
+<li><a href="iDocLayer_RemoveShotByID.html">
+				  RemoveShotByID</a></li>
+<li><a href="iDocLayer_Go.html">
+				  Go</a></li>
+<li><a href="iDocLayer_Visible.html">
+				  Visible</a></li>
+<li><a href="iDocLayer_ActiveShotID.html">
+				  ActiveShotID</a></li>
+<li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Getting the Object<p id="para_indent">
+				<p id="para_indent">
+					You can get a copy of this object by calling the
+					<a href="iDocument_overview.html#">Document Interface</a>
+					<a href="iDocument_LayerByName.html#">LayerByName</a> or
+					<a href="iDocument_LayerByIndex.html#">LayerByIndex</a>
+					methods.
+				</p>
+			</p></p>
+<p id="para_subs">Methods<p id="para_indent">
+				<ul>
+					<li><p id="list_item"><a href="iDocLayer_ShotCount.html#">ShotCount</a><br>
+						Returns the number of shots that are in the document layer.
+					</p></li>
+					<li><p id="list_item"><a href="iDocLayer_ShotIDByIndex.html#">ShotIDByIndex</a><br>
+						Returns a shot_id for the given 1-based index.
+					</p></li>
+					<li><p id="list_item"><a href="iDocLayer_ShotIDByName.html#">ShotIDByName</a><br>
+						Returns a shot_id for a shot whose name matches the given name.
+					</p></li>
+          <li><p id="list_item">
+            <a href="iDocLayer_PreviewShotID.html#">PreviewShotID</a><br>
+            Returns a shot_id for the shot on this layer that is currently in preview
+          </p></li>
+          <li><p id="list_item">
+            <a href="iDocLayer_LiveShotID.html#">LiveShotID</a><br>
+            Returns a shot_id for the shot on this layer that is currently live
+          </p></li>
+					<li><p id="list_item"><a href="iDocLayer_AddShotWithMedia.html#">AddShotWithMedia</a><br>
+						Adds a new shot on the layer using the given media filename as source media.
+					</p></li>
+					<li><p id="list_item"><a href="iDocLayer_RemoveShotByID.html#">RemoveShotByID</a><br>
+						Removes the given shot from the layer.
+					</p></li>
+					<li><p id="list_item"><a href="iDocLayer_Go.html#">Go</a><br>
+						Causes the layer to be brought Live.<br>
+						This only makes brings changes "live" when you have turned
+						<a href="iDocument_AutoLive.html#">AutoLive</a> off (set to 0).<br>
+						If <a href="iDocument_AutoLive.html#">AutoLive</a> is on, you generally do not need to use "go".
+					</p></li>
+				</ul>
+			</p></p>
+<p id="para_subs">Properties<p id="para_indent">
+				<ul>
+					<li><p id="list_item"><a href="iDocLayer_Visible.html#">Visible</a><br>
+						Whether the current layer is visible.<br>
+						If <a href="iDocument_AutoLive.html#">AutoLive</a>
+						is off (set to 0), you must use
+						<a href="iDocLayer_Go.html#">Go</a> after calling this method.
+					</p></li>
+					<li><p id="list_item"><a href="iDocLayer_ActiveShotID.html#">ActiveShotID</a><br>
+						Sets the active shot for the layer.<br>
+						If <a href="iDocument_AutoLive.html#">AutoLive</a>
+						is off (set to 0), you must use
+						<a href="iDocLayer_Go.html#">Go</a> after calling this method.
+					</p></li>
+				</ul>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

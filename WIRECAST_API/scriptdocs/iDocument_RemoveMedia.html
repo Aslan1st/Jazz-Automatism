@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="iDocument_RemoveMedia.html" name="iDocument_RemoveMedia.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>RemoveMedia</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Document Interface &#8212; 
+			RemoveMedia</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocument_overview.html">
+				  Overview</a></li>
+<li><a href="iDocument_Broadcast.html">
+				  Broadcast</a></li>
+<li><a href="iDocument_IsBroadcasting.html">
+				  IsBroadcasting</a></li>
+<li><a href="iDocument_ArchiveToDisk.html">
+				  ArchiveToDisk</a></li>
+<li><a href="iDocument_IsArchivingToDisk.html">
+				  IsArchivingToDisk</a></li>
+<li><a href="iDocument_LayerByIndex.html">
+				  LayerByIndex</a></li>
+<li><a href="iDocument_LayerByName.html">
+				  LayerByName</a></li>
+<li><a href="iDocument_ShotByShotID.html">
+				  ShotByShotID</a></li>
+<li><a href="iDocument_ShotIDByName.html">
+				  ShotIDByName</a></li>
+<li><a href="iDocument_TransitionSpeed.html">
+				  TransitionSpeed</a></li>
+<li><a href="iDocument_AutoLive.html">
+				  AutoLive</a></li>
+<li><a href="iDocument_ActiveTransitionIndex.html">
+				  ActiveTransitionIndex</a></li>
+<li><a href="iDocument_AudioMutedToSpeaker.html">
+				  AudioMutedToSpeaker</a></li>
+<li><a href="iDocument_SaveSnapshot.html">
+				  SaveSnapshot</a></li>
+<li><a href="iDocument_RemoveMedia.html">
+				  RemoveMedia</a></li>
+<li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Method RemoveMedia Interface<p id="para_indent">
+				<p id="para_indent">
+					Visual Basic:
+				</p>
+				<pre id="code">
+RemoveMedia(path as String)</pre>
+				<p id="para_indent">
+					C Variants:
+				</p>
+				<pre id="code">
+void RemoveMedia(const char *path);</pre>
+			</p></p>
+<p id="para_subs">path<p id="para_indent">
+				<p id="para_indent">
+					Path (including file name) to file that should be removed.
+				</p>
+			</p></p>
+<p id="para_subs">Method Result<p id="para_indent">
+				<p id="para_indent">
+					Does not return a result.
+				</p>
+			</p></p>
+<p id="para_subs">Discussion<p id="para_indent">
+				<p id="para_indent">
+					This method instructs Wirecast to remove the media from the document.
+				</p>
+				<p id="para_indent">
+					Wirecast does not check if the media exists in any shots.  If you use a shot
+					whose media has been deleted, the output will be blank.
+				</p>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

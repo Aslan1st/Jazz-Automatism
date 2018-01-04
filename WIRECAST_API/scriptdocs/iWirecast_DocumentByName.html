@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="iWirecast_DocumentByName.html" name="iWirecast_DocumentByName.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>DocumentByName</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Wirecast Interface &#8212; 
+			DocumentByName</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iWirecast_overview.html">
+				  Overview</a></li>
+<li><a href="iWirecast_DocumentByIndex.html">
+				  DocumentByIndex</a></li>
+<li><a href="iWirecast_DocumentByName.html">
+				  DocumentByName</a></li>
+<li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Method DocumentByName Interface<p id="para_indent">
+				<p id="para_indent">
+					Visual Basic:
+				</p>
+				<pre id="code">
+DocumentByName(name as String, compare_method as Int) As Object</pre>
+				<p id="para_indent">
+					C Variants:
+				</p>
+				<pre id="code">
+IDispatch *DocumentByName(const char *string, int compare_method);</pre>
+			</p></p>
+<p id="para_subs">name<p id="para_indent">
+				<p id="para_indent">
+					The name to compare against each document name.
+				</p>
+				<p id="para_indent">
+					This is the name as seen in the title of the window.
+				</p>
+			</p></p>
+<p id="para_subs">compare_method<p id="para_indent">
+				<p id="para_indent">
+					The comparison method, which is one of these values:
+					<ul>
+					<li><p id="list_item">0 = Exact Match - The string you pass in exactly matches the document name</p></li>
+					<li><p id="list_item">1 = Contains - The string you pass in is a substring of the document name</p></li>
+					<li><p id="list_item">2 = Case Insensitive - The lowercase of the string you pass in exactly matches the lowercase of the document name</p></li>
+					<li><p id="list_item">3 = Case Insensitive Contains - The lowercase of the string you pass in is a substring of the lowercase of the document name</p></li>
+					</ul>
+				</p>
+			</p></p>
+<p id="para_subs">Method Result (Object / IDispatch)<p id="para_indent">
+				<p id="para_indent">
+					Returns a Wirecast <a href="iDocument_overview.html#">Document Object</a>.<br>
+					Return 0 if index is out of bounds, or document cannot be found.
+				</p>
+			</p></p>
+<p id="para_subs">Discussion<p id="para_indent">
+				<p id="para_indent">
+					This function returns a <a href="iDocument_overview.html#">Document Object</a>.
+				</p>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

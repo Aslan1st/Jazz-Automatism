@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="iWirecast_overview.html" name="iWirecast_overview.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Overview</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Wirecast Interface &#8212; 
+			Overview</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iWirecast_overview.html">
+				  Overview</a></li>
+<li><a href="iWirecast_DocumentByIndex.html">
+				  DocumentByIndex</a></li>
+<li><a href="iWirecast_DocumentByName.html">
+				  DocumentByName</a></li>
+<li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Getting the Object<p id="para_indent">
+				<p id="para_indent">
+					Your language should support some way of using "GetActiveObject" or "GetObject", which uses the application name
+					to look in the windows registry to find the actual GUID.
+				</p>
+				<p id="para_indent">
+					If you need the GUID for Wirecast, it is currently (as expressed in C):
+				</p>
+				<pre id="code">
+const GUID IDD_Wirecast_app	= { 0xa416c15b, 0xa073, 0x4994, { 0x8d, 0xb5, 0x87, 0x52, 0x7a, 0x41, 0xb2, 0xfa } };
+const char IDD_Wirecast_app_str[] = "{A416C15B-A073-4994-8DB5-87527A41B2FA}";</pre>
+			</p></p>
+<p id="para_subs">Methods<p id="para_indent">
+				<ul>
+					<li><p id="list_item"><a href="iWirecast_DocumentByIndex.html#">DocumentByIndex</a><br>
+						returns a <a href="iDocument_overview.html#">Document Object</a>.
+					</p></li>
+					<li><p id="list_item"><a href="iWirecast_DocumentByName.html#">DocumentByName</a><br>
+						returns a <a href="iDocument_overview.html#">Document Object</a>.
+					</p></li>
+				</ul>
+			</p></p>
+<p id="para_subs">Properties<p id="para_indent">
+				<p id="para_indent">
+					There are currently no properties on the Wirecast object.
+				</p>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>

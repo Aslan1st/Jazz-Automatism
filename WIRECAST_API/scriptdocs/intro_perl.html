@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xxx="intro_perl.html" name="intro_perl.html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Notes: Perl</title>
+<link rel="stylesheet" href="doc.css" type="text/css" media="screen">
+</head>
+<body><table cellpadding="0" cellspacing="0" id="main_table" border="0">
+<tr>
+<td id="top_left"><a href="http://www.telestream.net">Wirecast&#8482; Scripting<div id="version">Version 5.0.3</div>
+<div id="date"></div></a></td>
+<td id="top_right">Wirecast Scripting &#8212; 
+			Notes: Perl</td>
+</tr>
+<tr>
+<td valign="top" id="bottom_left"><ul id="menu">
+<li><a href="intro_welcome.html">Wirecast Scripting</a></li>
+<li><a href="intro_welcome.html">
+				  Welcome</a></li>
+<li><a href="intro_visual_basic.html">
+				  Notes: Visual Basic</a></li>
+<li><a href="intro_CSharp.html">
+				  Notes: C#</a></li>
+<li><a href="intro_perl.html">
+				  Notes: Perl</a></li>
+<li>
+<li><a href="iWirecast_overview.html">Wirecast Interface</a></li>
+<li><a href="iDocument_overview.html">Document Interface</a></li>
+<li><a href="iDocLayer_overview.html">Document Layer Interface</a></li>
+<li><a href="iShot_overview.html">Shot Interface</a></li>
+</ul></td>
+<td valign="top" id="bottom_right">
+<p id="para_subs">Installation<p id="para_indent">
+				<p id="para_indent">
+					The easiest way to use Perl with OLE is to install the Win32::OLE extension.
+				</p>
+				<p id="para_indent">
+					Using PPM this can be done as follows in the Command Line Interpreter:
+				</p>
+				<pre id="code">
+ppm install win32-ole
+				</pre>
+				<p id="para_indent">
+					Please see ppm documentation if this install fails.
+				</p>
+			</p></p>
+<p id="para_subs">Getting the Wirecast Object<p id="para_indent">
+				<p id="para_indent">
+					All interaction with Wirecast begins with asking for the main Wirecast objects, which can be done as follows:
+				</p>
+				<pre id="code">
+my $wirecast = Win32::OLE-&gt;GetActiveObject("Wirecast.Application");
+				</pre>
+				<p id="para_indent">
+					The above code assumes that Wirecast is currently running.
+				</p>
+				<p id="para_indent">
+					If Wirecast is not running, $wirecast will be zero.
+				</p>
+				<p id="para_indent">
+					You can then run Wirecast if you like as follows:
+				</p>
+				<pre id="code">
+my $wirecast = Win32::OLE-&gt;GetActiveObject("Wirecast.Application");
+if ($wirecast == 0) {
+  $wirecast = Win32::OLE-&gt;new("Wirecast.Application");
+}
+				</pre>
+			</p></p>
+<p id="para_subs">Making sure an object is valid<p id="para_indent">
+				<p id="para_indent">
+					Any time you get an object back from Wirecast, you should make sure it is valid, such as...
+				</p>
+				<pre id="code">
+my $wirecast = Win32::OLE-&gt;GetActiveObject("Wirecast.Application");
+if ($wirecast) {
+  print "Got Wirecast";
+}
+				</pre>
+			</p></p>
+<p id="para_subs">Methods<p id="para_indent">
+				<p id="para_indent">
+					The syntax for calling methods in Perl is shown below.
+					In this example, we are calling the method "DocumentByIndex" with a parameter of one (1).
+				</p>
+				<pre id="code">
+my $wirecast = Win32::OLE-&gt;GetActiveObject("Wirecast.Application");
+if ($wirecast) {
+  my $document = $wirecast-&gt;DocumentByIndex(1);
+}
+				</pre>
+			</p></p>
+<p id="para_subs">Properties<p id="para_indent">
+			
+				<p id="para_indent">
+					You can get the value of properties and modify the properties of some objects.
+				</p>
+				<p id="para_indent">
+					In Perl, you if you'd like to get the "TransitionSpeed" property of the object $document, you might do this:
+				</p>
+				<pre id="code">
+my $wirecast = Win32::OLE-&gt;GetActiveObject("Wirecast.Application");
+if ($wirecast) {
+  my $document = $wirecast-&gt;DocumentByIndex(1);
+  if ($document) {
+    my $speed = $document-&gt;{TransitionSpeed};
+    printf "Document speed is %s\n", $speed;
+  }
+}
+				</pre>
+				<p id="para_indent">
+					You may set a property in a similar fashion:
+				</p>
+				<pre id="code">
+my $wirecast = Win32::OLE-&gt;GetActiveObject("Wirecast.Application");
+if ($wirecast) {
+  my $document = $wirecast-&gt;DocumentByIndex(1);
+  if ($document) {
+    $document-&gt;{TransitionSpeed} = "slow";
+  }
+}
+				</pre>
+			</p></p>
+</td>
+</tr>
+</table></body>
+</html>
