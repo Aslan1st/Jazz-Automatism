@@ -7,6 +7,7 @@ class BroadcastSession
 
   def initialize
     update_title
+    update_output
     Launchy.open('C:\Users\Aslan\Desktop\Mezzrow_Live_Stream.xml')
   end
 
@@ -50,31 +51,61 @@ class BroadcastSession
     @wirecast_documentobject.ArchiveToDisk('stop')
   end
 
+  def update_xml
+    update_title
+    update_output
+  end
+
   def update_title
     file_name = 'C:\Users\Aslan\Desktop\Mezzrow_Live_Stream.xml'
 
     doc = Nokogiri::XML(File.open(file_name))
     shot = doc.at('shot[unique_id="f3341230-4a49-40f8-a0c7-e7784e6103ef_shot"]')
     input = shot.at('text').attribute('text')
-    input.content = DateTime.now.strftime('Mezzrow ' + '%Y' + '-' + '%m' + '-' + '%d' + '%H' + ':' + '%M' + ':' + '%S' + ' © 2017- smallslive.com')
+    input.content = DateTime.now.strftime('Mezzrow ' + '%Y' + '-' + '%m' + '-' + '%d' + ' © 2017- smallslive.com')
 
     File.open(file_name, 'w') {|f| f.puts doc.to_xml}
   end
 
-  def name_files
-    folder_path = 'C:/Users/Aslan/Desktop/Automatism'
-    todays_date =  Date.today.strftime('%Y-%m-%d')
-    Dir[folder_path + '/*'].reject{ |f| f['C:/Users/Aslan/Desktop/Automatism/TestDir'] }.each do |f|
-      filename = File.basename(f, File.extname(f)).tr('_0', '')
-      filename_new = [ folder_path,
-                       '/',
-                       'TestDir/',
-                       filename,
-                       todays_date,
-                       File.extname(f) ].map!(&:to_s).join("")
-      File.rename(f, filename_new)
-    end
+  def update_output
+    file_name = 'C:\Users\Aslan\Desktop\Mezzrow_Live_Stream.xml'
+
+    doc = Nokogiri::XML(File.open(file_name))
+    output_node = doc.at("advanced_output")
+    hr_output = output_node.at('output[unique_id="2"]').attribute('output_url')
+    lr_output = output_node.at('output[unique_id="3"]').attribute('output_url')
+    hr_output.content = name_files("HR")
+    lr_output.content = name_files("LR")
+
+    File.open(file_name, 'w') {|f| f.puts doc.to_xml}
   end
+
+  def name_files(quality)
+    folder_path = 'C:\\Users\\Aslan\\Desktop\\Automatism'
+    todays_date =  Date.today.strftime('%Y-%m-%d')
+    filename_new = [ folder_path,
+                      '\\',
+                      'TestDir\\',
+                      quality,
+                      todays_date,
+                      '.mp4' ].map!(&:to_s).join("")
+  end
+
+##
+#  def name_files
+#    folder_path = 'C:/Users/Aslan/Desktop/Automatism'
+#    todays_date =  Date.today.strftime('%Y-%m-%d')
+#    Dir[folder_path + '/*'].reject{ |f| f['C:/Users/Aslan/Desktop/Automatism/TestDir'] }.each do |f|
+#      filename = File.basename(f, File.extname(f)).tr('_0', '')
+#      filename_new = [ folder_path,
+#                       '/',
+#                       'TestDir/',
+#                       filename,
+#                       todays_date,
+#                       File.extname(f) ].map!(&:to_s).join("")
+#      File.rename(f, filename_new)
+#    end
+#  end
 
   def rotate_shots(new_shot)
     @document_layer.setproperty('ActiveShotID', @document_layer.ShotIDByIndex(new_shot))
@@ -102,7 +133,7 @@ class BroadcastSession
   end
 
   def get_up_and_go
-    begin
+
       start_broadcast
       #start_stream
       start_record_to_disk
@@ -115,10 +146,6 @@ class BroadcastSession
         end
       end
       stop_broadcast
-      name_files
-    rescue NoMethodError
-      name_files
-    end
   end
 
 end
